@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 
-import LikeButton from "./LikeButton";
-
 import PropTypes from "prop-types";
 import withStyles from "@material-ui/core/styles/withStyles";
 import MyButton from "../../util/MyButton";
 import dayjs from "dayjs";
 import { Link } from "react-router-dom";
+
+import LikeButton from "./LikeButton";
+import Comments from "./Comments";
 
 // MUI stuff
 import Dialog from "@material-ui/core/Dialog";
@@ -52,6 +53,11 @@ const styles = {
 		marginTop: 50,
 		marginBottom: 50,
 	},
+	visibleSeparator: {
+		width: "100%",
+		borderBottom: "1px solid rgba(0,0,0,0.1)",
+		marginBottom: 20,
+	},
 };
 
 class ScreamDialog extends Component {
@@ -77,6 +83,7 @@ class ScreamDialog extends Component {
 				commentCount,
 				userImage,
 				userHandle,
+				comments,
 			},
 			UI: { loading },
 		} = this.props;
@@ -113,6 +120,9 @@ class ScreamDialog extends Component {
 					</MyButton>
 					<span>{commentCount} Comments</span>
 				</Grid>
+				<hr className={classes.visibleSeparator} />
+
+				<Comments comments={comments} />
 			</Grid>
 		);
 		return (
