@@ -138,6 +138,25 @@ export const deleteScream = screamId => dispatch => {
 		});
 };
 
+// GET user data from his userHandle
+export const getUserData = userHandle => dispatch => {
+	dispatch({ type: LOADING_DATA });
+	axios
+		.get(`/user/${userHandle}`)
+		.then(res => {
+			dispatch({
+				type: SET_SCREAMS,
+				payload: res.data.screams,
+			});
+		})
+		.catch(() => {
+			dispatch({
+				type: SET_SCREAMS,
+				payload: null,
+			});
+		});
+};
+
 // Clear Errors
 export const clearErrors = () => dispatch => {
 	dispatch({
